@@ -1,7 +1,13 @@
 
+
+
 export default function Home() {
+  
+  
   return (
     
+    
+
      
     <div className="bg-gray-100 flex justify-center items-center h-screen">
       
@@ -26,10 +32,12 @@ export default function Home() {
         </div>
         
         <div className="mb-6 text-blue-500">
-          <a href="#" className="hover:underline">Forgot Password?</a>
+          <a href="./pages/novaSenha" className="hover:underline">Esqueceu a senha? Obtenha uma nova</a>
         </div>
         
         <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full">Login</button>
+        
+        
       </form>
 
       <div className="mt-6 text-blue-500 text-center">

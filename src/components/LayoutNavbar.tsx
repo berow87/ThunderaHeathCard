@@ -1,34 +1,58 @@
 export default function LayoutNavbar(){
     return(
-        
-<header className="">
-  <nav >
-    <div className="bg-gradient-to-r from-teal-400 to-blue-600 h-screen">
-      <div className="flex justify-between h-16 px-10 shadow items-center bg-lime-200 ">
-        <div className="flex items-center space-x-8">
-          <h1 className="text-xl lg:text-2xl font-bold cursor-pointer">Thundera Heath card</h1>
-          <div className="hidden md:flex justify-around space-x-4">
-            <a href="#" className="hover:text-indigo-600 text-gray-700">Home</a>
-            <a href="#" className="hover:text-indigo-600 text-gray-700">About</a>
-            <a href="#" className="hover:text-indigo-600 text-gray-700">Service</a>
-            <a href="#" className="hover:text-indigo-600 text-gray-700">Contact</a>
-          </div>
-          <div className="ml-auto md:hidden ">
-              <button className="flex items-center px-3 py-2 border rounded" type="button">
-              <svg className="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <title>Menu</title>
-                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
-              </svg>
-              </button>
-          </div>
-        </div>
-        <div className="flex space-x-4 items-center ">
-          <a href="#" className="bg-indigo-600 px-4 py-2 rounded text-white hover:bg-indigo-500 text-sm">SIGNUP</a>
-        </div>
-      </div>
-    </div>
-  </nav>
-  
-</header>
+      
+      <nav
+              className="flex items-center justify-between flex-wrap bg-white py-4 lg:px-12 shadow border-solid border-t-2 border-blue-700">
+              <div className="flex justify-between lg:w-auto w-full lg:border-b-0 pl-6 pr-2 border-solid border-b-2 border-gray-300 pb-5 lg:pb-0">
+                  <div className="flex items-center flex-shrink-0 text-gray-800 mr-16">
+                      <span className="font-semibold text-xl tracking-tight">My Navbar</span>
+                  </div>
+                  <div className="block lg:hidden ">
+                      <button
+                          id="nav"
+                          className="flex items-center px-3 py-2 border-2 rounded text-blue-700 border-blue-700 hover:text-blue-700 hover:border-blue-700">
+                          <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title>
+                              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+                          </svg>
+                      </button>
+                  </div>
+              </div>
+          
+              <div className="menu w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto lg:px-3 px-8">
+                  <div className="text-md font-bold text-blue-700 lg:flex-grow">
+                      <a href="#responsive-header"
+                         className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2">
+                          Menu 1
+                      </a>
+                      <a href="#responsive-header"
+                         className=" block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2">
+                          Menu 2
+                      </a>
+                      <a href="#responsive-header"
+                         className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2">
+                          Menu 3
+                      </a>
+                  </div>
+                
+                  <div className="relative mx-auto text-gray-600 lg:block hidden">
+                      <input
+                          className="border-2 border-gray-300 bg-white h-10 pl-2 pr-8 rounded-lg text-sm focus:outline-none"
+                          type="search" name="search" placeholder="Search"/>
+                      <button type="submit" className="absolute right-0 top-0 mt-3 mr-2">
+                          
+                      </button>
+                  </div>
+                  <div className="flex ">
+                      <a href="#"
+                         className="block text-md px-4 py-2 rounded text-blue-700 ml-2 font-bold hover:text-white mt-4 hover:bg-blue-700 lg:mt-0">Sign
+                          in</a>
+          
+                      <a href="#"
+                         className=" block text-md px-4  ml-2 py-2 rounded text-blue-700 font-bold hover:text-white mt-4 hover:bg-blue-700 lg:mt-0">login</a>
+                  </div>
+              </div>
+          
+          </nav>
+
     )
 }
