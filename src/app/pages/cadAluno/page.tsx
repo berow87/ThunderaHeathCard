@@ -23,20 +23,24 @@ export default function CadAluno(){
 			<div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
 				
 				<input className="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Nome Completo" />
-      </div>
+      		</div>
 				<div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
 					
 					<input className="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Idade" />
-        </div>
+        		</div>
 					<div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
 						
 						<input className="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Tipo Sanguineo" />
-          </div>
+          			</div>
+					  <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+						
+						<input className="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Matricula" />
+          			  </div>
 						<div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
 							
 							<input className="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Alergias" />
               
-            </div>
+            			</div>
 
             <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
 							
@@ -45,6 +49,10 @@ export default function CadAluno(){
             <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
 							
 							<input className="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Contato de Emergencia" />
+            </div>
+			<div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+							
+							<input className="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Sala do Aluno" />
             </div>
 
 	  
