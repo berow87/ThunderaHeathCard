@@ -35,7 +35,7 @@ export default function TelaBusca(){
               <label form="sala" className="block mt-2 text-xs font-semibold text-gray-600 uppercase">Sala do aluno</label>
               <input id="sala" type="text" name="sala" placeholder="" autoComplete="Sala do Aluno" className="block w-full p-3 mt-2 mb-4 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
               
-              <a href=""
+              <a href="/pages/listaAlunos"
                          className="block mb-4 lg:inline-block lg:mt-0 hover:text-white px-8 py-4 rounded hover:bg-blue-700 mr-2 bg-gradient-to-r from-teal-400 to-blue-600">
                           Buscar
               </a>
