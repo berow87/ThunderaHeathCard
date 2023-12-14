@@ -4,6 +4,8 @@
 export default function Home() {
   
   
+  
+
   return (
     
     
@@ -35,7 +37,7 @@ export default function Home() {
           <a href="./pages/novaSenha" className="hover:underline">Esqueceu a senha? Obtenha uma nova</a>
         </div>
         
-        <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full">Login</button>
+        <button type="submit"  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full">Login</button>
         
         
       </form>

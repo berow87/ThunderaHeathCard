@@ -1,0 +1,50 @@
+<div id="cadastro-prof">
+
+    <form action="/main-filtro-profCad" method="post">
+
+        <input type="text" name="nome" placeholder="Nome Completo">
+
+        
+        <input type="text" name="login" placeholder="Login">
+
+        <input type="email" name="email" placeholder="Email">
+
+        <input type="password" name="senha" placeholder="Senha">
+
+
+        <label for="disciplina"> Disciplina</label>
+
+        <select name="disciplina" id="disciplina">
+
+            <option value="português">Português</option>
+
+            <option value="matematica">Matematica</option>
+
+            <option value="geografia">Geografia</option>
+
+            <option value="artes">Artes</option>
+
+        </select>
+
+        <label for="turma"> Turmas</label>
+        <select name="turma" id="turma" multiple>
+
+            <option value="1A">1° turma - A</option>
+
+            <option value="1B">1° turma - B</option>
+
+            <option value="2A">2° turma - A</option>
+
+            <option value="2B">2° turma - B</option>
+
+            <option value="3A">3° turma - A</option>
+
+            <option value="3B">3° turma - B</option>
+
+        </select>
+
+        <input type="submit" value="Registrar-se">
+
+    </form>
+
+</div>
