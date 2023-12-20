@@ -1,173 +1,72 @@
-// Importando express
-var express = require('express');
+// backend/server.js
+const express = require('express');
+const bodyParser = require('body-parser');
+const { collection, addDoc } = require('firebase/firestore');
+const db = require('./firebase'); // Importa a configuração do Firebase
+
 const app = express();
+const PORT = process.env.PORT || 3001;
 
-const bodyParser = require('body-parser')
+// Middleware para analisar o corpo das solicitações
+app.use(bodyParser.json());
 
-const exphbs = require('express-handlebars')
-const path = require('path')
+// Rota para lidar com o cadastro de professores
+app.post('/api/cadastrar-professor', async (req, res) => {
+  try {
+    const { nomeCompleto, nomeUsuario, email, senha, disciplina } = req.body;
 
-const db = require('./models/db')
-const cadProf = require('./models/cadProf')
-const cadAluno = require('./models/cadAluno')
+    // Adiciona o professor à coleção "professores" no Firebase
+    const docRef = await addDoc(collection(db, 'professores'), {
+      nomeCompleto,
+      nomeUsuario,
+      email,
+      senha,
+      disciplina,
+    });
 
-app.use(express.static(path.join(__dirname, 'views')));
-app.set('views', path.join(__dirname, 'views'))
-app.engine('hbs',
-    exphbs.engine({
-        defaultLayout: 'main',
-        extname: '.hbs',
-        layoutsDir: path.join(__dirname, 'views/layout')
-    }))
-
-app.set('view engine', 'hbs')
-
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-
-//rota de página inicial de login
-app.get('/login', (req, res) => {
-    res.render('login'); // Renderiza o arquivo 'mainfiltro.hbs'
+    console.log('Professor cadastrado com ID: ', docRef.id);
+    res.status(200).json({ mensagem: 'Professor cadastrado com sucesso!' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensagem: 'Erro ao cadastrar professor.' });
+  }
 });
 
-//rota para cadastrar acesso de professor
-app.get('/cad-professor', (req, res) => {
+// Rota para lidar com o cadastro de alunos
+app.post('/api/cadastrar-aluno', async (req, res) => {
+  try {
+    const {
+      nomeCompleto,
+      idade,
+      tipoSanguineo,
+      matricula,
+      alergias,
+      fazUsoDeMedicamentos,
+      contatoEmergencia,
+      sala,
+    } = req.body;
 
-    res.render('dados-prof');
+    // Adiciona o aluno à coleção "alunos" no Firebase
+    const docRef = await addDoc(collection(db, 'alunos'), {
+      nomeCompleto,
+      idade,
+      tipoSanguineo,
+      matricula,
+      alergias,
+      fazUsoDeMedicamentos,
+      contatoEmergencia,
+      sala,
+    });
 
-})
-
-//rota para filtro após professor cadastrado
-app.post('/main-filtro-profCad', (req, res) => {
-
-    cadProf.create({
-
-        nome: req.body.nome,
-        login: req.body.login,
-        email: req.body.email,
-        senha: req.body.senha,
-        disciplina: req.body.disciplina,
-        turma: req.body.turma
-        
-    }).then(function(){
-
-        res.render('main-filtro-profCad')
-    
-    }).catch(function(erro){
-    
-        res.send('Deu o seguinte erro: '+erro)
-    
-    })
-
-})
-
-//rota de inserção de dados para cadastrar um aluno
-app.get('/cad-aluno', (req, res) => {
-
-    res.render('dados-alunos');
-
-})
-
-//rota para filtro após aluno cadastrado
-app.post('/main-filtro-AlunoCad', (req, res) => {
-
-    idadeAluno = parseInt(req.body.idade)
-    cadAluno.create({
-
-        nome: req.body.nome,
-        idade: idadeAluno,
-        tipoSanguineo: req.body.tipoSanguineo,
-        matricula: req.body.matricula,
-        alergia: req.body.alergia,
-        medicamento: req.body.medicamento,
-        telEmergencia: req.body.telEmergencia,
-        turma: req.body.turma
-        
-    }).then(function(){
-
-        res.render('dados-alunos')
-    
-    }).catch(function(erro){
-    
-        res.send('Deu o seguinte erro: '+erro)
-    
-    })
-
-})
-
-//rota de inserção de dados para cadastrar um aluno e conclusão do forms
-// app.get('/cad-aluno2', (req, res) => {
-
-//     res.render('dados-alunos2');
-
-// })
-
-
-//rota para encontrar alunos cadastrados
-app.get('/main-filtro', (req, res) => {
-
-    res.render('main-filtro');
-
-})
-
-//após o cadastro do professor/aluno, é  levado para esta rota
-app.post('/main-filtro', (req, res) => {
-
-    res.render('main-filtro');
-    res.render('menu-botoes');
-
-})
-
-//rotas de envio
-//envio de cadastro de Aluno
-app.post('/encontrarAluno', (req, res) => {
-
-
-    res.render('dados-prof');
-
-})
-
-
-//rota para cadastrar aluno
-// app.post('/cadAluno', (req, res) => {
-
-//     nome = req.body.nomeProf;
-//     matricula = req.body.matricula;
-//     cpf = req.body.cpf;
-//     datanasc = req.body.data - nasc;
-//     email = req.body.email;
-//     tel = req.body.telefone;
-
-
-//     //res.render('dados-prof');
-//     //res.send(nome+" "+matricula+" "+cpf);
-// })
-
-//rota para cadastrar aluno2
-// app.post('/cadAluno2', (req, res) => {
-
-//     nome = req.body.nomeProf;
-//     matricula = req.body.matricula;
-//     cpf = req.body.cpf;
-//     datanasc = req.body.data - nasc;
-//     email = req.body.email;
-//     tel = req.body.telefone;
-
-//     lista = [nome, matricula, cpf, datanasc, email, tel]
-
-//     return lista
-
-
-//     //res.render('dados-prof');
-//     //res.send(nome+" "+matricula+" "+cpf);
-// })
-
-db.sequelize.authenticate().then(function () {
-    console.log('Conectado com sucesso!');
-}).catch(function (erro) {
-    console.log('Falha ao se conectar');
+    console.log('Aluno cadastrado com ID: ', docRef.id);
+    res.status(200).json({ mensagem: 'Aluno cadastrado com sucesso!' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensagem: 'Erro ao cadastrar aluno.' });
+  }
 });
 
-app.listen(8081, function () {
-    console.log('Servidor funcionando na url "localhost"');
+// Inicie o servidor
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });

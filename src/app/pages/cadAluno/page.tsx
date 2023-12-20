@@ -1,6 +1,56 @@
+import { useState } from 'react';
+
+const CadastroAluno = () => {
+	const [dadosAluno, setDadosAluno] = useState({
+	  nomeCompleto: '',
+	  idade: 0,
+	  tipoSanguineo: '',
+	  matricula: '',
+	  alergias: '',
+	  fazUsoDeMedicamentos: false,
+	  contatoEmergencia: '',
+	  sala: '',
+	});
+
+	const handleInputChange = (e: { target: { name: any; value: any; type: any; checked: any; }; }) => {
+		const { name, value, type, checked } = e.target;
+		setDadosAluno((prevData) => ({
+		  ...prevData,
+		  [name]: type === 'checkbox' ? checked : value,
+		}));
+	  };
+
+	
+	  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+		e.preventDefault();
+	
+		try {
+		  const response = await fetch('/api/cadastrar-aluno', {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(dadosAluno),
+		  });
+
+		  const data = await response.json();
+
+		  if (response.ok) {
+			console.log(data.mensagem);
+			// Lógica adicional após o cadastro bem-sucedido
+		  } else {
+			console.error(data.mensagem);
+		  }
+		} catch (error) {
+		  console.error('Erro ao cadastrar aluno:', error);
+		}
+	  };
+	
+
 export default function CadAluno(){
     return(
         
+		
 
 
       
@@ -17,7 +67,7 @@ export default function CadAluno(){
 		<div className="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
 	</div>
 	<div className="flex md:w-1/2 justify-center py-10 items-center bg-white">
-		<form className="bg-white">
+		<form onSubmit={handleSubmit} className="bg-white">
 			<h1 className="text-gray-800 font-bold text-2xl mb-1">Bem vindos pais e professores!</h1>
 			<p className="text-sm font-normal text-gray-600 mb-7">Cadastre os dados de saude do aluno nos campos a seguir</p>
 			<div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
